@@ -1,0 +1,468 @@
+/* Light = default (no data-theme). Dark = html[data-theme="dark"]. Loaded after khmer-overrides. */
+
+html[data-theme="dark"] {
+    color-scheme: dark;
+    --ink: #e6edf3;
+    --muted: #9fb0bf;
+    --paper: #0f141a;
+    --line: #2a3342;
+    --accent: #f08a72;
+    --accent-dark: #e06e54;
+    --navy: #121a24;
+    --text-dark: #e6edf3;
+    --text-light: #9fb0bf;
+    --bg-light: #0f141a;
+    --primary: #f08a72;
+    --primary-dark: #e06e54;
+    --card-shadow: rgba(0, 0, 0, 0.45);
+    --surface: #161d27;
+    --surface-2: #1c2530;
+    --surface-mute: #222b38;
+    --hero-lead: #b8c5d3;
+    --section-mute: #aab6c4;
+    --badge-wash: #1e2a3d;
+    --badge-blue: #243652;
+}
+
+html[data-theme="dark"] body {
+    background: var(--paper);
+    color: var(--ink);
+}
+
+html[data-theme="dark"] .site-header {
+    background: rgba(15, 20, 28, 0.96);
+    border-bottom-color: var(--line);
+}
+
+html[data-theme="dark"] .lang-switch a {
+    color: var(--muted);
+}
+
+html[data-theme="dark"] .lang-switch a:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--ink);
+}
+
+html[data-theme="dark"] .hero {
+    background:
+        radial-gradient(circle at 20% 20%, rgba(240, 138, 114, 0.08), transparent 25%),
+        var(--paper);
+    color: var(--ink);
+}
+
+html[data-theme="dark"] .hero p.lead {
+    color: var(--hero-lead);
+}
+
+html[data-theme="dark"] .hero-search {
+    background: var(--surface);
+    border-color: var(--line);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35);
+}
+
+html[data-theme="dark"] .hero-search i {
+    color: var(--muted);
+}
+
+html[data-theme="dark"] .hero-art img {
+    border-color: var(--surface-2);
+    box-shadow: 0 22px 45px rgba(0, 0, 0, 0.45);
+}
+
+html[data-theme="dark"] .trust-row p {
+    color: var(--section-mute);
+}
+
+html[data-theme="dark"] .section-heading p {
+    color: var(--section-mute);
+}
+
+html[data-theme="dark"] .category-card {
+    background: var(--surface);
+    border-color: var(--line);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.35);
+}
+
+html[data-theme="dark"] .book-card {
+    background: var(--surface);
+    border-color: var(--line);
+}
+
+html[data-theme="dark"] .browse-head p:not(.eyebrow) {
+    color: var(--section-mute);
+}
+
+html[data-theme="dark"] .recent-cover {
+    background: var(--surface-2);
+    border-color: var(--line);
+}
+
+html[data-theme="dark"] .recent-book p {
+    color: var(--muted);
+}
+
+html[data-theme="dark"] .recent-book em,
+html[data-theme="dark"] .browse-card-foot em {
+    background: var(--surface-mute);
+    border-color: var(--line);
+    color: var(--muted);
+}
+
+html[data-theme="dark"] .browse-card {
+    background: var(--surface);
+}
+
+html[data-theme="dark"] .filter-check,
+html[data-theme="dark"] .filter-radio {
+    color: var(--section-mute);
+}
+
+html[data-theme="dark"] .filter-check small {
+    color: var(--muted);
+}
+
+html[data-theme="dark"] .filter-radio {
+    border-color: var(--line);
+}
+
+html[data-theme="dark"] .filter-radio:has(input:checked) {
+    background: var(--surface-2);
+    border-color: var(--accent);
+    color: var(--ink);
+}
+
+html[data-theme="dark"] .price-row {
+    color: var(--muted);
+}
+
+html[data-theme="dark"] .filter-actions a {
+    background: var(--surface);
+    border-color: var(--line);
+    color: var(--muted);
+}
+
+html[data-theme="dark"] .results-toolbar p {
+    color: var(--muted);
+}
+
+html[data-theme="dark"] .browse-empty,
+html[data-theme="dark"] .favorites-empty {
+    background: var(--surface);
+    border-color: var(--line);
+    color: var(--ink);
+}
+
+html[data-theme="dark"] .browse-empty p,
+html[data-theme="dark"] .favorites-empty p {
+    color: var(--muted);
+}
+
+html[data-theme="dark"] .site-footer {
+    background: #0c1016;
+    border-top: 1px solid var(--line);
+}
+
+html[data-theme="dark"] .footer-brand p,
+html[data-theme="dark"] .site-footer a:not(.logo),
+html[data-theme="dark"] .footer-bottom {
+    color: var(--muted);
+}
+
+html[data-theme="dark"] .footer-social a:not(.logo) {
+    background: var(--surface);
+    color: var(--ink);
+}
+
+html[data-theme="dark"] .newsletter {
+    background: linear-gradient(160deg, #1a2433 0%, #0f141a 100%);
+}
+
+html[data-theme="dark"] .auth-card {
+    background: var(--surface);
+    border-color: var(--line);
+}
+
+html[data-theme="dark"] .auth-icon {
+    background: var(--surface-2);
+}
+
+html[data-theme="dark"] .auth-card-head p {
+    color: var(--muted);
+}
+
+html[data-theme="dark"] .input-wrap {
+    background: var(--surface-2);
+    border-color: var(--line);
+}
+
+html[data-theme="dark"] .input-wrap:focus-within {
+    background: var(--surface-mute);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(240, 138, 114, 0.2);
+}
+
+html[data-theme="dark"] .input-wrap i {
+    color: var(--muted);
+}
+
+html[data-theme="dark"] .auth-form input::placeholder {
+    color: var(--muted);
+}
+
+html[data-theme="dark"] .auth-note {
+    color: var(--muted);
+}
+
+html[data-theme="dark"] .alert-danger {
+    background: rgba(220, 53, 69, 0.15);
+    border: 1px solid rgba(220, 53, 69, 0.35);
+    color: #f8b4bd;
+}
+
+html[data-theme="dark"] .alert-success {
+    background: rgba(46, 160, 67, 0.15);
+    border: 1px solid rgba(46, 160, 67, 0.35);
+    color: #acf2c6;
+}
+
+html[data-theme="dark"] .detail-media-panel,
+html[data-theme="dark"] .detail-box,
+html[data-theme="dark"] .detail-seller-card {
+    background: var(--surface);
+    border-color: var(--line);
+}
+
+html[data-theme="dark"] .detail-main-image {
+    background: var(--surface-2);
+}
+
+html[data-theme="dark"] .detail-thumb {
+    background: var(--surface-2);
+}
+
+html[data-theme="dark"] .detail-thumb.active {
+    border-color: var(--accent);
+}
+
+html[data-theme="dark"] .detail-badges span {
+    background: var(--badge-wash);
+    color: var(--section-mute);
+}
+
+html[data-theme="dark"] .detail-badges span:first-child {
+    background: var(--badge-blue);
+    color: #c8d9f0;
+}
+
+html[data-theme="dark"] .detail-facts span,
+html[data-theme="dark"] .seller-details span {
+    color: var(--muted);
+}
+
+html[data-theme="dark"] .detail-box p,
+html[data-theme="dark"] .detail-box li {
+    color: var(--section-mute);
+}
+
+html[data-theme="dark"] .detail-empty {
+    color: var(--ink);
+}
+
+html[data-theme="dark"] .detail-empty p {
+    color: var(--muted);
+}
+
+html[data-theme="dark"] .detail-btn-outline {
+    border-color: var(--line);
+    color: var(--ink);
+}
+
+html[data-theme="dark"] .favorites-head p:not(.eyebrow) {
+    color: var(--section-mute);
+}
+
+html[data-theme="dark"] .favorite-card {
+    background: var(--surface);
+    border-color: var(--line);
+}
+
+html[data-theme="dark"] .favorite-cover {
+    background: var(--surface-2);
+}
+
+html[data-theme="dark"] .favorite-heart {
+    background: var(--surface);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+html[data-theme="dark"] .favorite-heart.inactive {
+    color: var(--muted);
+}
+
+html[data-theme="dark"] .favorite-condition {
+    background: rgba(49, 89, 133, 0.35);
+    color: #b8d4ff;
+}
+
+html[data-theme="dark"] .list-section h2,
+html[data-theme="dark"] .list-section {
+    color: var(--ink);
+}
+
+html[data-theme="dark"] .list-section input[type="text"] {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    color: var(--ink);
+}
+
+html[data-theme="dark"] .about-hero {
+    color: #fff;
+}
+
+html[data-theme="dark"] .about-mission,
+html[data-theme="dark"] .about-values,
+html[data-theme="dark"] .about-impact {
+    background: var(--paper);
+}
+
+html[data-theme="dark"] .about-copy p,
+html[data-theme="dark"] .value-card p,
+html[data-theme="dark"] .impact-head p {
+    color: var(--section-mute);
+}
+
+html[data-theme="dark"] .about-image-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+}
+
+html[data-theme="dark"] .value-card {
+    background: var(--surface);
+    border-color: var(--line);
+}
+
+html[data-theme="dark"] .impact-grid > div {
+    background: var(--surface);
+    border-color: var(--line);
+}
+
+html[data-theme="dark"] .category-page .category-hero {
+    background: var(--surface);
+    border-color: var(--line);
+}
+
+html[data-theme="dark"] .category-intro {
+    color: var(--section-mute);
+}
+
+html[data-theme="dark"] .category-stats span {
+    color: var(--muted);
+}
+
+html[data-theme="dark"] .category-toolbar {
+    border-color: var(--line);
+}
+
+html[data-theme="dark"] .sell-card {
+    background: var(--surface);
+    border-color: var(--line);
+}
+
+html[data-theme="dark"] .chat-box {
+    background: var(--surface);
+    border: 1px solid var(--line);
+}
+
+html[data-theme="dark"] .chat-messages {
+    background: var(--surface-2);
+}
+
+html[data-theme="dark"] .bot-message p {
+    background: var(--surface-mute);
+    color: var(--ink);
+}
+
+html[data-theme="dark"] .chat-input {
+    background: var(--surface-2);
+    border-color: var(--line);
+    color: var(--ink);
+}
+
+html[data-theme="dark"] .browse-card {
+    background: var(--surface);
+    border-color: var(--line);
+}
+
+html[data-theme="dark"] .browse-card-img {
+    background: var(--surface-2);
+}
+
+html[data-theme="dark"] .browse-category {
+    color: var(--accent);
+}
+
+html[data-theme="dark"] .back-link {
+    color: var(--muted);
+}
+
+/* Theme toggle (header) */
+.visually-hidden {
+    border: 0;
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+
+.theme-switch {
+    align-items: center;
+    display: inline-flex;
+    gap: 4px;
+    padding: 4px;
+    border-radius: 10px;
+    background: rgba(6, 24, 41, 0.05);
+    border: 1px solid var(--line);
+}
+
+html[data-theme="dark"] .theme-switch {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: var(--line);
+}
+
+.theme-toggle-btn {
+    align-items: center;
+    background: transparent;
+    border: 0;
+    border-radius: 8px;
+    color: var(--ink);
+    cursor: pointer;
+    display: inline-flex;
+    font-size: 14px;
+    height: 34px;
+    justify-content: center;
+    padding: 0 10px;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.theme-toggle-btn:hover {
+    background: rgba(229, 121, 97, 0.12);
+    color: var(--accent);
+}
+
+.theme-toggle-btn.is-active {
+    background: var(--accent);
+    color: #fff;
+}
+
+html[data-theme="dark"] .theme-toggle-btn.is-active {
+    color: #fff;
+}
+
+.theme-toggle-btn:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}

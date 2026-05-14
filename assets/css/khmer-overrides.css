@@ -1,0 +1,68 @@
+/* Khmer UI: SN KH SIMPLE-HAIR + fallbacks. Loaded after main CSS; rules use html.lang-km only. */
+
+@font-face {
+    font-family: 'SN KH SIMPLE-HAIR';
+    src: url('../fonts/SN-KH-SIMPLE-HAIR-Bold.otf') format('opentype'),
+         url('../fonts/SN-KH-SIMPLE-HAIR-Bold.ttf') format('truetype');
+    font-weight: 400 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+html.lang-km {
+    --reread-font-km: 'SN KH SIMPLE-HAIR', 'Kantumruy Pro', 'Noto Sans Khmer', system-ui, sans-serif;
+    font-size: 17px;
+}
+
+/*
+ * Force Khmer stack everywhere Font Awesome is not used.
+ * FA icon nodes use classes containing "fa-"; keep those on FA webfonts.
+ */
+html.lang-km *:not([class*="fa-"]) {
+    font-family: var(--reread-font-km) !important;
+}
+
+html.lang-km p,
+html.lang-km li,
+html.lang-km .lead,
+html.lang-km .section-heading p,
+html.lang-km .category-intro {
+    line-height: 2.05;
+    margin-bottom: 0.95em;
+}
+
+html.lang-km h1,
+html.lang-km h2,
+html.lang-km h3,
+html.lang-km h4,
+html.lang-km h5,
+html.lang-km h6 {
+    letter-spacing: 0.03em;
+    line-height: 1.45;
+}
+
+html.lang-km .nav a {
+    line-height: 1.35;
+}
+
+html.lang-km input,
+html.lang-km textarea,
+html.lang-km select,
+html.lang-km button {
+    letter-spacing: 0.02em;
+    line-height: 1.9;
+    word-spacing: 0.12em;
+}
+
+html.lang-km .bot-message p,
+html.lang-km .user-message p,
+html.lang-km .chat-input {
+    line-height: 1.85;
+}
+
+html.lang-km code,
+html.lang-km pre,
+html.lang-km kbd,
+html.lang-km samp {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace !important;
+}
