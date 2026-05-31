@@ -79,7 +79,7 @@ require_once 'includes/header.php';
 <section class="hero">
   <div class="container hero-inner">
     <div class="hero-copy">
-      <h1><?= htmlspecialchars(t('hero.title')); ?> <span><?= htmlspecialchars(t('hero.title_span')); ?></span></h1>
+      <h1><?= htmlspecialchars(t('ReRead—Buy&Sell')); ?> <span><?= htmlspecialchars(t('hero.title_span')); ?></span></h1>
       <p class="lead"><?= htmlspecialchars(t('hero.lead')); ?></p>
 
       <form method="GET" action="index.php" class="hero-search">
@@ -89,15 +89,12 @@ require_once 'includes/header.php';
       </form>
 
       <div class="trust-row" aria-label="Reader trust">
-        <span>AR</span>
-        <span>DC</span>
-        <span>KL</span>
-        <p><?= htmlspecialchars(t('hero.trusted')); ?> <strong>10k+</strong> <?= htmlspecialchars(t('hero.trusted_readers')); ?></p>
-      </div>
+        
+        </div>
     </div>
 
     <div class="hero-art" aria-hidden="true">
-      <img class="hero-art-back" src="assets/images/history.png" alt="">
+      <img class="hero-art-back" src="assets/images/image.png" alt="">
       <img class="hero-art-front" src="assets/images/novel.png" alt="">
     </div>
   </div>

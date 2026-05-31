@@ -127,8 +127,8 @@ require_once 'includes/header.php';
     <div class="container">
         <div class="browse-head">
             <div>
-                <p class="eyebrow"><?= htmlspecialchars(t('browse.eyebrow')); ?></p>
-                <h1><?= htmlspecialchars(t('browse.title')); ?></h1>
+                <p class="eyebrow"><?= htmlspecialchars(t('')); ?></p>
+                <h1><?= htmlspecialchars(t('All BOOkS')); ?></h1>
                 <p><?= htmlspecialchars(t('browse.sub')); ?></p>
             </div>
             <a href="#all-books" class="text-link"><?= htmlspecialchars(t('browse.view_all')); ?> <i class="fas fa-arrow-down"></i></a>
@@ -174,21 +174,99 @@ require_once 'includes/header.php';
                     </div>
 
                     <div class="filter-block">
-                        <h2><?= htmlspecialchars(t('browse.condition')); ?></h2>
-                        <label class="filter-radio">
-                            <input type="radio" name="condition" value="" <?= $selectedCondition === '' ? 'checked' : ''; ?>>
-                            <span><?= htmlspecialchars(t('browse.all_conditions')); ?></span>
-                        </label>
-                        <?php foreach ($conditionRows as $row): ?>
-                            <label class="filter-radio">
-                                <input type="radio"
-                                       name="condition"
-                                       value="<?= htmlspecialchars($row['book_condition']); ?>"
-                                       <?= $selectedCondition === $row['book_condition'] ? 'checked' : ''; ?>>
-                                <span><?= htmlspecialchars($row['book_condition']); ?></span>
-                            </label>
-                        <?php endforeach; ?>
-                    </div>
+
+    <h2><?= htmlspecialchars(t('browse.condition')); ?></h2>
+
+    <?php
+    $conditionPercent = [
+         'Like New' => '90%-95%',
+            'Very Good' => '80%-85%',
+            'Good' => '60%-70%',
+            'Fair' => '40%-50%'
+    ];
+    ?>
+
+    <!-- ALL -->
+    <label class="filter-radio">
+
+        <input
+            type="radio"
+            name="condition"
+            value=""
+            <?= $selectedCondition === '' ? 'checked' : ''; ?>
+        >
+
+        <span>
+            <?= htmlspecialchars(t('browse.all_conditions')); ?>
+        </span>
+
+    </label>
+
+    <!-- LIKE NEW -->
+    <label class="filter-radio">
+
+        <input
+            type="radio"
+            name="condition"
+            value="Like New"
+            <?= $selectedCondition === 'Like New' ? 'checked' : ''; ?>
+        >
+
+        <span>
+            Like New (90%-95%)
+        </span>
+
+    </label>
+
+    <!-- VERY GOOD -->
+    <label class="filter-radio">
+
+        <input
+            type="radio"
+            name="condition"
+            value="Very Good"
+            <?= $selectedCondition === 'Very Good' ? 'checked' : ''; ?>
+        >
+
+        <span>
+            Very Good (80%-85%)
+        </span>
+
+    </label>
+
+    <!-- GOOD -->
+    <label class="filter-radio">
+
+        <input
+            type="radio"
+            name="condition"
+            value="Good"
+            <?= $selectedCondition === 'Good' ? 'checked' : ''; ?>
+        >
+
+        <span>
+            Good (60%-70%)
+        </span>
+
+    </label>
+
+    <!-- FAIR -->
+    <label class="filter-radio">
+
+        <input
+            type="radio"
+            name="condition"
+            value="Fair"
+            <?= $selectedCondition === 'Fair' ? 'checked' : ''; ?>
+        >
+
+        <span>
+            Fair (40%-50%)
+        </span>
+
+    </label>
+
+</div>
 
                     <div class="filter-block">
                         <h2><?= htmlspecialchars(t('browse.price_range')); ?></h2>

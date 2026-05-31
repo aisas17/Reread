@@ -102,10 +102,28 @@ require_once 'includes/header.php';
                         <span><?= htmlspecialchars(t('detail.price')); ?></span>
                         <strong>$<?= number_format((float)$book['price'], 2); ?></strong>
                     </div>
-                    <div>
-                        <span><?= htmlspecialchars(t('detail.condition')); ?></span>
-                        <strong><?= htmlspecialchars($book['book_condition'] ?: t('detail.not_specified')); ?></strong>
-                    </div>
+                    <?php
+$conditionPercent = [
+    'Like New' => '90%-95%',
+            'Very Good' => '80%-85%',
+            'Good' => '60%-70%',
+            'Fair' => '40%-50%'
+];
+
+$currentCondition = $book['book_condition'] ?? '';
+?>
+
+<div>
+    <span><?= htmlspecialchars(t('detail.condition')); ?></span>
+
+    <strong>
+        <?= htmlspecialchars($currentCondition ?: t('detail.not_specified')); ?>
+
+        <?php if (isset($conditionPercent[$currentCondition])): ?>
+            (<?= $conditionPercent[$currentCondition]; ?>)
+        <?php endif; ?>
+    </strong>
+</div>
                     <div>
                         <span><?= htmlspecialchars(t('detail.category')); ?></span>
                         <strong><?= htmlspecialchars($book['category_name'] ?: t('detail.na')); ?></strong>
@@ -114,7 +132,7 @@ require_once 'includes/header.php';
 
                 <div class="detail-info-grid">
                     <div class="detail-box">
-                        <h2><i class="far fa-file-lines"></i> <?= htmlspecialchars(t('detail.synopsis')); ?></h2>
+                        <h2><i class="far fa-file-lines"></i> <?= htmlspecialchars(t('Description')); ?></h2>
                         <p>
                             <?= !empty(trim($book['description'] ?? ''))
                                 ? nl2br(htmlspecialchars($book['description']))

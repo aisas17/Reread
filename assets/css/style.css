@@ -2204,8 +2204,7 @@ h2.section-head {
     margin: 0;
 }
 
-.text-link,
-.category-card a {
+.text-link {
     color: var(--accent);
     font-family: Arial, Helvetica, sans-serif;
     font-size: 13px;
@@ -2214,33 +2213,84 @@ h2.section-head {
 
 .category-grid {
     display: grid;
-    gap: 26px;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 24px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 }
 
 .category-card {
     background: #fff;
     border: 1px solid var(--line);
-    border-radius: 8px;
-    box-shadow: 0 10px 22px rgba(16, 27, 39, 0.06);
+    border-radius: 12px;
+    box-shadow: 0 8px 18px rgba(16,27,39,0.06);
     overflow: hidden;
+    position: relative;
+    transition: transform 0.28s ease, box-shadow 0.28s ease;
+}
+
+.category-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(16,27,39,0.12);
 }
 
 .category-card img {
-    aspect-ratio: 1.12 / 1;
-    display: block;
-    object-fit: cover;
     width: 100%;
+    height: 160px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.45s ease;
+}
+
+.category-card:hover img {
+    transform: scale(1.06);
 }
 
 .category-card div {
-    padding: 22px 24px 24px;
+    padding: 18px 18px 22px;
 }
 
 .category-card h3 {
     color: var(--ink);
-    font-size: 20px;
-    margin: 0 0 12px;
+    font-size: 18px;
+    margin: 0 0 10px;
+    font-weight: 700;
+}
+
+.category-card a {
+    display: inline-block;
+    padding: 8px 12px;
+    background: var(--primary);
+    color: #fff;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    transition: background 0.18s ease, transform 0.18s ease;
+}
+
+.category-card a:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+/* Responsive tweaks */
+@media (max-width: 1024px) {
+    .category-grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .category-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .category-card img { height: 140px; }
+}
+
+@media (max-width: 480px) {
+    .category-grid {
+        grid-template-columns: 1fr;
+    }
+    .category-card { border-radius: 10px; }
+    .category-card img { height: 200px; }
 }
 
 .book-card {

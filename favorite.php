@@ -38,7 +38,7 @@ require_once 'includes/header.php';
     <div class="container">
         <div class="favorites-head">
             <div>
-                <p class="eyebrow"><?= htmlspecialchars(t('fav.eyebrow')); ?></p>
+                <p class="eyebrow"><?= htmlspecialchars(t('')); ?></p>
                 <h1><?= htmlspecialchars(t('fav.title')); ?></h1>
                 <p><?= htmlspecialchars(t('fav.sub')); ?></p>
             </div>

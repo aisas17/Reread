@@ -2,17 +2,11 @@
 require_once 'includes/db.php';
 if (session_status() === PHP_SESSION_NONE) session_start();
 
-/* =========================
-   LOGIN CHECK
-========================= */
 if (!isset($_SESSION['user'])) {
     header("Location: login.php");
     exit;
 }
 
-/* =========================
-   GET BOOK ID
-========================= */
 if (!isset($_GET['id'])) {
     header("Location: profile.php");
     exit;
@@ -24,10 +18,7 @@ $user_id = $_SESSION['user']['id'];
 /* =========================
    FETCH BOOK
 ========================= */
-$stmt = $conn->prepare("
-    SELECT * FROM books
-    WHERE id=? AND user_id=?
-");
+$stmt = $conn->prepare("SELECT * FROM books WHERE id=? AND user_id=?");
 $stmt->bind_param("ii", $book_id, $user_id);
 $stmt->execute();
 $book = $stmt->get_result()->fetch_assoc();
@@ -40,11 +31,7 @@ if (!$book) {
 /* =========================
    FETCH CATEGORIES
 ========================= */
-$catQuery = $conn->query("
-    SELECT id, name
-    FROM book_categories
-    ORDER BY name ASC
-");
+$catQuery = $conn->query("SELECT id, name FROM book_categories ORDER BY name ASC");
 $categories = $catQuery->fetch_all(MYSQLI_ASSOC);
 
 $errors = [];
@@ -70,7 +57,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($condition == '') $errors[] = "Condition required.";
     if ($location == '') $errors[] = "Location required.";
 
-    /* IMAGE */
     $image = $book['image'];
 
     if (!empty($_FILES['image']['name'])) {
@@ -99,7 +85,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    /* SAVE */
     if (empty($errors)) {
 
         $stmt = $conn->prepare("
@@ -140,7 +125,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $book['description'] = $description;
             $book['image'] = $image;
             $book['location'] = $location;
-
         } else {
             $errors[] = "Database error.";
         }
@@ -152,62 +136,68 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 require_once 'includes/header.php';
 ?>
 
+<!-- ================= CLEAN UI STYLE ================= -->
+<style>
+.preview-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    object-fit: cover;
+    border: 1px solid #ddd;
+    margin-top: 10px;
+}
+</style>
+
 <section class="section form-section">
 
 <div class="form-box">
 
 <h2 class="section-title">✏️ Update Book</h2>
 
+<!-- SUCCESS -->
+<?php if($success): ?>
+<div class="alert alert-success">
+    <?= htmlspecialchars($success); ?>
+</div>
+<?php endif; ?>
+
+<!-- ERRORS -->
 <?php if($errors): ?>
 <div class="alert alert-danger">
 <ul>
 <?php foreach($errors as $e): ?>
-<li><?= $e; ?></li>
+    <li><?= htmlspecialchars($e); ?></li>
 <?php endforeach; ?>
 </ul>
-</div>
-<?php endif; ?>
-
-<?php if($success): ?>
-<div class="alert alert-success">
-<?= $success; ?>
 </div>
 <?php endif; ?>
 
 <form method="POST" enctype="multipart/form-data" class="post-form">
 
 <label>Book Title</label>
-<input type="text" name="title"
-value="<?= htmlspecialchars($book['title']); ?>" required>
+<input type="text" name="title" value="<?= htmlspecialchars($book['title']); ?>">
 
 <label>Author</label>
-<input type="text" name="author"
-value="<?= htmlspecialchars($book['author']); ?>" required>
+<input type="text" name="author" value="<?= htmlspecialchars($book['author']); ?>">
 
 <label>Category</label>
-<select name="category_id" required>
+<select name="category_id">
 <option value="">Choose Category</option>
-
 <?php foreach($categories as $c): ?>
-<option value="<?= $c['id']; ?>"
-<?= ($book['category_id']==$c['id']) ? 'selected' : ''; ?>>
-<?= htmlspecialchars($c['name']); ?>
+<option value="<?= $c['id']; ?>" <?= ($book['category_id']==$c['id'])?'selected':''; ?>>
+    <?= htmlspecialchars($c['name']); ?>
 </option>
 <?php endforeach; ?>
-
 </select>
 
 <label>Condition</label>
-<input type="text" name="book_condition"
-value="<?= htmlspecialchars($book['book_condition']); ?>" required>
+<input type="text" name="book_condition" value="<?= htmlspecialchars($book['book_condition']); ?>">
 
 <label>Price</label>
-<input type="text" name="price"
-value="<?= htmlspecialchars($book['price']); ?>" required>
+<input type="text" name="price" value="<?= htmlspecialchars($book['price']); ?>">
 
 <label>Location</label>
-<input type="text" name="location"
-value="<?= htmlspecialchars($book['location']); ?>" required>
+<input type="text" name="location" value="<?= htmlspecialchars($book['location']); ?>">
 
 <label>Description</label>
 <textarea name="description"><?= htmlspecialchars($book['description']); ?></textarea>
@@ -215,16 +205,16 @@ value="<?= htmlspecialchars($book['location']); ?>" required>
 <label>Current Image</label>
 
 <?php if(!empty($book['image']) && file_exists(__DIR__.'/uploads/'.$book['image'])): ?>
-<img src="uploads/<?= rawurlencode($book['image']); ?>" class="preview-img">
+    <img src="uploads/<?= rawurlencode($book['image']); ?>" class="preview-img">
 <?php else: ?>
-<p>No image</p>
+    <p style="color:#888;">No image uploaded</p>
 <?php endif; ?>
 
 <label>Change Image</label>
 <input type="file" name="image">
 
 <button type="submit" class="btn btn-primary full-width">
-Update Book
+    Update Book
 </button>
 
 <a href="profile.php" class="back-link">← Back to Profile</a>
@@ -232,6 +222,7 @@ Update Book
 </form>
 
 </div>
+
 </section>
 
 <?php require_once 'includes/footer.php'; ?>

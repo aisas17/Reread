@@ -150,8 +150,7 @@ require_once 'includes/header.php';
                                     </span>
                                 </td>
                                 <td>
-                                    <div class="admin-actions">
-                                        <a href="../book_detail.php?id=<?= (int)$b['id']; ?>" class="admin-action view">View</a>
+                                    <a href="admin_book_detail.php?id=<?= (int)$b['id']; ?>" class="admin-action view">View</a>
 
                                         <?php if ($b['status'] !== 'approved'): ?>
                                             <a href="update_status.php?id=<?= (int)$b['id']; ?>&status=approved" class="admin-action approve">Approve</a>

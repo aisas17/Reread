@@ -42,7 +42,7 @@ $__lang = reread_lang();
 <body>
 <header class="site-header">
   <div class="container header-inner">
-    <a class="logo" href="index.php">Reread</a>
+    <a class="logo" href="index.php">ReRead</a>
 
     <div class="header-tools">
     <nav class="nav nav-main" aria-label="Primary">

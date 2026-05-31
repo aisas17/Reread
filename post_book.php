@@ -30,9 +30,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $description = trim($_POST['description'] ?? '');
     $location    = trim($_POST['location'] ?? '');
 
-    /* =========================
-       VALIDATION
-    ========================= */
     if ($title === '') $errors[] = "Book title is required.";
     if ($author === '') $errors[] = "Author is required.";
     if ($category_id <= 0) $errors[] = "Please select category.";
@@ -40,9 +37,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($condition === '') $errors[] = "Condition required.";
     if ($location === '') $errors[] = "Location required.";
 
-    /* =========================
-       IMAGE UPLOAD
-    ========================= */
     $mainImage = "";
 
     if (!empty($_FILES['image']['name'])) {
@@ -78,9 +72,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errors[] = "Main image required.";
     }
 
-    /* =========================
-       INSERT DATABASE
-    ========================= */
     if (empty($errors)) {
 
         $status = "pending";
@@ -122,6 +113,17 @@ $selectedCondition = $_POST['book_condition'] ?? 'Very Good';
 require_once 'includes/header.php';
 ?>
 
+<!-- VERY SOFT PINK BACKGROUND -->
+<style>
+    body {
+        background: #fffcfe; /* very soft pink */
+    }
+
+    .sell-page {
+        background: transparent;
+    }
+</style>
+
 <section class="sell-page">
     <div class="sell-hero">
         <div class="container sell-hero-inner">
@@ -160,13 +162,13 @@ require_once 'includes/header.php';
 
                 <div class="sell-field full">
                     <label for="title">Book Title</label>
-                    <input id="title" type="text" name="title" placeholder="e.g. The Shadow of the Wind" value="<?= htmlspecialchars($_POST['title'] ?? ''); ?>">
+                    <input id="title" type="text" name="title" value="<?= htmlspecialchars($_POST['title'] ?? ''); ?>">
                 </div>
 
                 <div class="sell-grid">
                     <div class="sell-field">
                         <label for="author">Author</label>
-                        <input id="author" type="text" name="author" placeholder="e.g. Carlos Ruiz Zafon" value="<?= htmlspecialchars($_POST['author'] ?? ''); ?>">
+                        <input id="author" type="text" name="author" value="<?= htmlspecialchars($_POST['author'] ?? ''); ?>">
                     </div>
 
                     <div class="sell-field">
@@ -183,37 +185,54 @@ require_once 'includes/header.php';
 
                     <div class="sell-field">
                         <label for="price">Price ($)</label>
-                        <input id="price" type="number" step="0.01" name="price" placeholder="0.00" value="<?= htmlspecialchars($_POST['price'] ?? ''); ?>">
+                        <input id="price" type="number" step="0.01" name="price" value="<?= htmlspecialchars($_POST['price'] ?? ''); ?>">
                     </div>
 
                     <div class="sell-field">
                         <label for="location">Location</label>
-                        <div class="sell-input-icon">
-                            <i class="fas fa-location-dot"></i>
-                            <input id="location" type="text" name="location" placeholder="City, Country" value="<?= htmlspecialchars($_POST['location'] ?? ''); ?>">
-                        </div>
+                        <input id="location" type="text" name="location" value="<?= htmlspecialchars($_POST['location'] ?? ''); ?>">
                     </div>
                 </div>
 
                 <div class="sell-field full">
-                    <label>Book Condition</label>
-                    <div class="condition-options">
-                        <?php foreach (['Like New', 'Very Good', 'Good', 'Fair'] as $conditionOption): ?>
-                            <label>
-                                <input type="radio" name="book_condition" value="<?= htmlspecialchars($conditionOption); ?>" <?= $selectedCondition === $conditionOption ? 'checked' : ''; ?>>
-                                <span><?= htmlspecialchars($conditionOption); ?></span>
-                            </label>
-                        <?php endforeach; ?>
-                    </div>
-                </div>
+    <label>Book Condition</label>
+
+    <div class="condition-options">
+
+        <?php
+        $conditions = [
+            'Like New' => '90%-95%',
+            'Very Good' => '80%-85%',
+            'Good' => '60%-70%',
+            'Fair' => '40%-50%'
+        ];
+        ?>
+
+        <?php foreach ($conditions as $conditionOption => $percent): ?>
+            <label>
+                <input
+                    type="radio"
+                    name="book_condition"
+                    value="<?= htmlspecialchars($conditionOption); ?>"
+                    <?= $selectedCondition === $conditionOption ? 'checked' : ''; ?>
+                >
+
+                <span>
+                    <?= htmlspecialchars($conditionOption); ?>
+                    <small>(<?= $percent; ?>)</small>
+                </span>
+            </label>
+        <?php endforeach; ?>
+
+    </div>
+</div>
 
                 <div class="sell-field full">
                     <label for="description">Book Description</label>
-                    <textarea id="description" name="description" placeholder="Tell us about the story and the state of the book..."><?= htmlspecialchars($_POST['description'] ?? ''); ?></textarea>
+                    <textarea id="description" name="description"><?= htmlspecialchars($_POST['description'] ?? ''); ?></textarea>
                 </div>
 
                 <button type="submit" class="sell-submit">Post Book</button>
-                <p class="sell-note">By posting, your book will be sent to admins for approval before appearing publicly.</p>
             </form>
         </div>
     </div>

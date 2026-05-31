@@ -27,7 +27,7 @@ require_once 'includes/header.php';
         </div>
 
         <div class="about-image-card">
-            <img src="assets/images/history.png" alt="">
+            <img src="assets/images/book1.jpg" alt="">
         </div>
     </div>
 </section>

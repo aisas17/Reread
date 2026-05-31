@@ -33,13 +33,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $phone    = trim($_POST['phone'] ?? '');
     $telegram = trim($_POST['telegram'] ?? '');
 
-    if ($name === '') {
-        $errors[] = "Name is required.";
-    }
-
-    if ($phone === '') {
-        $errors[] = "Phone is required.";
-    }
+    if ($name === '') $errors[] = "Name is required.";
+    if ($phone === '') $errors[] = "Phone is required.";
 
     $profile_pic = $user['profile_pic'];
 
@@ -56,17 +51,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
 
             $dir = __DIR__ . "/uploads/profile/";
-
-            if (!is_dir($dir)) {
-                mkdir($dir, 0777, true);
-            }
+            if (!is_dir($dir)) mkdir($dir, 0777, true);
 
             $newPic = time() . "_" . rand(1000,9999) . "." . $ext;
             $uploadPath = $dir . $newPic;
 
             if (move_uploaded_file($_FILES['profile_pic']['tmp_name'], $uploadPath)) {
 
-                // delete old image
                 if (!empty($profile_pic) && file_exists($dir . $profile_pic)) {
                     unlink($dir . $profile_pic);
                 }
@@ -103,13 +94,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $success = "Profile updated successfully!";
 
-            // UPDATE SESSION (IMPORTANT FIX)
             $_SESSION['user']['name'] = $name;
             $_SESSION['user']['phone'] = $phone;
             $_SESSION['user']['telegram'] = $telegram;
             $_SESSION['user']['profile_pic'] = $profile_pic;
 
-            // refresh local user
             $user['name'] = $name;
             $user['phone'] = $phone;
             $user['telegram'] = $telegram;
@@ -126,66 +115,88 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 require_once 'includes/header.php';
 ?>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<!-- =========================
+     CSS (SMALL IMAGE STYLE)
+========================= -->
+<style>
+.profile-preview-img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ddd;
+    margin-top: 10px;
+}
+</style>
 
-<section class="section signup-section">
-<div class="auth-container">
+<section class="section form-section">
 
-    <h2 class="section-title">✏️ Edit Profile</h2>
+<div class="form-box">
 
-    <?php if ($success): ?>
-        <div class="alert alert-success">
-            <?= htmlspecialchars($success); ?>
-        </div>
-    <?php endif; ?>
+<h2 class="section-title">✏️ Edit Profile</h2>
 
-    <?php if ($errors): ?>
-        <div class="alert alert-danger">
-            <ul>
-                <?php foreach ($errors as $e): ?>
-                    <li><?= htmlspecialchars($e); ?></li>
-                <?php endforeach; ?>
-            </ul>
-        </div>
-    <?php endif; ?>
+<!-- SUCCESS -->
+<?php if ($success): ?>
+<div class="alert alert-success">
+    <?= htmlspecialchars($success); ?>
+</div>
+<?php endif; ?>
 
-    <form method="POST" enctype="multipart/form-data" class="auth-form">
+<!-- ERRORS -->
+<?php if ($errors): ?>
+<div class="alert alert-danger">
+<ul>
+<?php foreach ($errors as $e): ?>
+    <li><?= htmlspecialchars($e); ?></li>
+<?php endforeach; ?>
+</ul>
+</div>
+<?php endif; ?>
 
-        <label>Full Name</label>
-        <input type="text" name="name"
-               value="<?= htmlspecialchars($user['name']); ?>">
+<form method="POST" enctype="multipart/form-data" class="post-form">
 
-        <label>Phone</label>
-        <input type="text" name="phone"
-               value="<?= htmlspecialchars($user['phone']); ?>">
+<!-- NAME -->
+<label>Full Name</label>
+<input type="text" name="name"
+value="<?= htmlspecialchars($user['name']); ?>">
 
-        <label>Telegram</label>
-        <input type="text" name="telegram"
-               value="<?= htmlspecialchars($user['telegram'] ?? ''); ?>">
+<!-- PHONE -->
+<label>Phone</label>
+<input type="text" name="phone"
+value="<?= htmlspecialchars($user['phone']); ?>">
 
-        <label>Current Profile Picture</label><br>
+<!-- TELEGRAM -->
+<label>Telegram</label>
+<input type="text" name="telegram"
+value="<?= htmlspecialchars($user['telegram'] ?? ''); ?>">
 
-        <?php if(!empty($user['profile_pic']) && file_exists(__DIR__.'/uploads/profile/'.$user['profile_pic'])): ?>
-            <img src="uploads/profile/<?= rawurlencode($user['profile_pic']); ?>"
-                 style="width:120px;height:120px;border-radius:50%;object-fit:cover;">
-        <?php else: ?>
-            <i class="fas fa-user" style="font-size:60px;"></i>
-        <?php endif; ?>
+<!-- CURRENT IMAGE -->
+<label>Current Profile Picture</label>
 
-        <label>Upload New Picture</label>
-        <input type="file" name="profile_pic">
+<?php if(!empty($user['profile_pic']) && file_exists(__DIR__.'/uploads/profile/'.$user['profile_pic'])): ?>
+    <img src="uploads/profile/<?= rawurlencode($user['profile_pic']); ?>" class="profile-preview-img">
+<?php else: ?>
+    <div style="font-size:40px;color:#aaa;">
+        <i class="fas fa-user"></i>
+    </div>
+<?php endif; ?>
 
-        <button type="submit" class="btn btn-primary full-width">
-            Update Profile
-        </button>
+<!-- UPLOAD -->
+<label>Change Profile Picture</label>
+<input type="file" name="profile_pic">
 
-        <p class="auth-note">
-            <a href="profile.php">← Back to Profile</a>
-        </p>
+<!-- BUTTON -->
+<button type="submit" class="btn btn-primary full-width">
+    Update Profile
+</button>
 
-    </form>
+<!-- BACK -->
+<a href="profile.php" class="back-link">← Back to Profile</a>
+
+</form>
 
 </div>
+
 </section>
 
 <?php require_once 'includes/footer.php'; ?>
