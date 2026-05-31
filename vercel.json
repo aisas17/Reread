@@ -1,9 +1,6 @@
 {
   "functions": {
-    "*.php": {
-      "runtime": "vercel-php@0.9.0"
-    },
-    "admin/*.php": {
+    "api/index.php": {
       "runtime": "vercel-php@0.9.0"
     }
   },
@@ -18,19 +15,15 @@
     },
     {
       "src": "/admin/?",
-      "dest": "/admin/index.php"
+      "dest": "/api/index.php"
     },
     {
-      "src": "/admin/(.*)\\.php",
-      "dest": "/admin/$1.php"
-    },
-    {
-      "src": "/(.*)\\.php",
-      "dest": "/$1.php"
+      "src": "/admin/(.*)",
+      "dest": "/api/index.php"
     },
     {
       "src": "/(.*)",
-      "dest": "/index.php"
+      "dest": "/api/index.php"
     }
   ]
 }
